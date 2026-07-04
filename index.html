@@ -45,87 +45,53 @@ main{max-width:1100px;margin:0 auto;padding:1.8rem}
 footer{background:rgba(26,39,68,.88);backdrop-filter:blur(4px);color:rgba(255,255,255,.5);text-align:center;padding:1rem;font-size:11.5px;margin-top:3rem}
 footer strong{color:#fff}
 
-/* HERO — full viewport, no scroll */
+/* HERO — full viewport, price.jpg as background with blur overlay */
 #hero{
-  display:none;
-  position:fixed;
-  inset:0;
-  align-items:center;
-  justify-content:center;
-  text-align:center;
-  padding:0;
-  z-index:10;
-  background-image:url('marble_tile.jpeg');
-  background-repeat:repeat;
-  background-size:128px 128px;
-  overflow:hidden
+  display:none;position:fixed;inset:0;
+  align-items:center;justify-content:center;
+  text-align:center;padding:0;z-index:10;overflow:hidden
 }
 #hero.active{display:flex}
-
-/* glass card that fits exactly between header+nav and bottom of screen */
+/* background image — blurred */
+#hero::before{
+  content:'';position:absolute;inset:-20px;z-index:0;
+  background:url('price.jpg') center center / cover no-repeat;
+  filter:blur(8px);
+  transform:scale(1.05)
+}
+/* dark overlay so text is readable */
+#hero::after{
+  content:'';position:absolute;inset:0;z-index:1;
+  background:rgba(15,25,50,.55)
+}
 .hero-content{
+  position:relative;z-index:2;
   width:min(660px,92vw);
-  max-height:calc(100vh - 100px);
+  max-height:calc(100vh - 110px);
   overflow-y:auto;
-  background:rgba(255,255,255,.22);
-  border:1px solid rgba(255,255,255,.4);
+  background:rgba(255,255,255,.12);
+  border:1px solid rgba(255,255,255,.25);
   border-radius:16px;
   padding:clamp(1.2rem,3vh,2.5rem) clamp(1.2rem,3vw,2.5rem);
-  backdrop-filter:blur(10px);
-  display:flex;
-  flex-direction:column;
-  align-items:center;
-  gap:.6rem
+  backdrop-filter:blur(16px);
+  display:flex;flex-direction:column;align-items:center;gap:.6rem
 }
-.hero-logo{
-  height:clamp(60px,9vh,90px);
-  mix-blend-mode:multiply;
-  filter:drop-shadow(0 2px 6px rgba(0,0,0,.1))
-}
-.hero-uni{color:#1a2744;font-size:clamp(10px,1.4vw,12px);font-weight:700;letter-spacing:.14em;text-transform:uppercase}
-.hero-school{color:#2a3a4a;font-size:clamp(11px,1.4vw,12.5px)}
-.hero-dept{color:#3a4a5a;font-size:clamp(10px,1.3vw,12px)}
+.hero-logo{height:clamp(60px,9vh,90px);mix-blend-mode:screen;filter:drop-shadow(0 2px 8px rgba(0,0,0,.3))}
+.hero-uni{color:#fff;font-size:clamp(10px,1.4vw,12px);font-weight:700;letter-spacing:.14em;text-transform:uppercase}
+.hero-school{color:rgba(255,255,255,.8);font-size:clamp(11px,1.4vw,12.5px)}
+.hero-dept{color:rgba(255,255,255,.65);font-size:clamp(10px,1.3vw,12px)}
 .hero-divider{width:44px;height:3px;background:var(--orange);border-radius:2px;flex-shrink:0}
-.hero-title{
-  color:#1a2744;
-  font-size:clamp(1rem,2.2vw,1.55rem);
-  font-weight:700;
-  line-height:1.32;
-  max-width:560px
-}
-.hero-sub{color:#2a3a4a;font-size:clamp(.8rem,1.4vw,.95rem)}
-.hero-line{width:44px;height:1px;background:rgba(26,39,68,.18);flex-shrink:0}
-.hero-names{color:#1a2744;font-size:clamp(11.5px,1.5vw,13.5px);font-weight:500}
+.hero-title{color:#fff;font-size:clamp(1rem,2.2vw,1.55rem);font-weight:700;line-height:1.32;max-width:560px}
+.hero-sub{color:rgba(255,255,255,.78);font-size:clamp(.8rem,1.4vw,.95rem)}
+.hero-line{width:44px;height:1px;background:rgba(255,255,255,.25);flex-shrink:0}
+.hero-names{color:#fff;font-size:clamp(11.5px,1.5vw,13.5px);font-weight:500}
 .hero-names strong{font-weight:700}
-.hero-supervisor{color:#4a5a6a;font-size:clamp(10px,1.3vw,11.5px)}
-.hero-btn{
-  background:var(--orange);color:#fff;border:none;
-  padding:clamp(9px,1.5vh,13px) clamp(22px,3vw,36px);
-  border-radius:8px;
-  font-size:clamp(12px,1.5vw,14px);
-  font-weight:700;cursor:pointer;letter-spacing:.04em;
-  transition:background .2s;
-  box-shadow:0 4px 16px rgba(224,123,57,.4);
-  flex-shrink:0
-}
+.hero-supervisor{color:rgba(255,255,255,.6);font-size:clamp(10px,1.3vw,11.5px)}
+.hero-btn{background:var(--orange);color:#fff;border:none;padding:clamp(9px,1.5vh,13px) clamp(22px,3vw,36px);border-radius:8px;font-size:clamp(12px,1.5vw,14px);font-weight:700;cursor:pointer;letter-spacing:.04em;transition:background .2s;box-shadow:0 4px 20px rgba(224,123,57,.5);flex-shrink:0}
 .hero-btn:hover{background:#c96a2a}
-.about-toggle-btn{
-  background:rgba(26,39,68,.1);color:#1a2744;
-  border:1.5px solid rgba(26,39,68,.2);
-  padding:7px 20px;border-radius:8px;
-  font-size:clamp(11px,1.3vw,13px);
-  font-weight:600;cursor:pointer;
-  transition:all .2s;flex-shrink:0
-}
-.about-toggle-btn:hover{background:rgba(26,39,68,.18)}
-.hero-about{
-  text-align:left;
-  background:rgba(255,255,255,.78);
-  border:1px solid rgba(255,255,255,.5);
-  border-radius:12px;
-  padding:1.2rem 1.5rem;
-  width:100%
-}
+.about-toggle-btn{background:rgba(255,255,255,.15);color:#fff;border:1.5px solid rgba(255,255,255,.3);padding:7px 20px;border-radius:8px;font-size:clamp(11px,1.3vw,13px);font-weight:600;cursor:pointer;transition:all .2s;flex-shrink:0}
+.about-toggle-btn:hover{background:rgba(255,255,255,.25)}
+.hero-about{text-align:left;background:rgba(255,255,255,.85);border:1px solid rgba(255,255,255,.5);border-radius:12px;padding:1.2rem 1.5rem;width:100%}
 .hero-about h3{color:#1a2744;font-size:11.5px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;margin-bottom:.9rem;border-bottom:1px solid rgba(26,39,68,.1);padding-bottom:.5rem}
 .about-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(180px,1fr));gap:.9rem}
 .ab-label{color:var(--orange);font-size:9.5px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;margin-bottom:2px}
@@ -169,13 +135,8 @@ footer strong{color:#fff}
       <strong>Loyce Ezekiel</strong> (30264/T.2023)
     </div>
     <div class="hero-supervisor">Supervisor: Mr. Michael Mavura &nbsp;·&nbsp; GI 471 Dissertation &nbsp;·&nbsp; Dar es Salaam, 2026</div>
-    <button class="hero-btn"
-            onclick="show('maps',document.querySelectorAll('nav a')[1])">
-      View Research Dashboard &rarr;
-    </button>
-    <button class="about-toggle-btn" id="about-btn" onclick="toggleAbout()">
-      About This Research ▾
-    </button>
+    <button class="hero-btn" onclick="show('maps',document.querySelectorAll('nav a')[1])">View Research Dashboard &rarr;</button>
+    <button class="about-toggle-btn" id="about-btn" onclick="toggleAbout()">About This Research ▾</button>
     <div id="about-panel" style="display:none;width:100%">
       <div class="hero-about">
         <h3>About This Research</h3>
@@ -183,9 +144,7 @@ footer strong{color:#fff}
           <div>
             <div class="ab-label">Study Area</div>
             <div class="ab-val">Ubungo Municipality, Dar es Salaam — 14 wards, urban core to peri-urban fringe</div>
-            <img src="ubungo_study_area.png" alt="Study area"
-                 style="width:100%;margin-top:6px;border-radius:5px;border:1px solid rgba(26,39,68,.1)"
-                 onerror="this.style.display='none'">
+            <img src="ubungo_study_area.png" alt="Study area" style="width:100%;margin-top:6px;border-radius:5px;border:1px solid rgba(26,39,68,.1)" onerror="this.style.display='none'">
           </div>
           <div><div class="ab-label">Study Period</div><div class="ab-val">2022–2025 · 488 geo-referenced observations</div></div>
           <div><div class="ab-label">Model</div><div class="ab-val">GTWR · R² = 0.891 · Adj R² = 0.890 · AIC = −1,166.7</div></div>
@@ -296,7 +255,9 @@ const GALLERIES={
     {file:'Ubungo_LandPrice_Projection_Map.png',label:'Land Price Projection Map 2040',sub:'Scenario projection from 2025 base'}
   ],
   'other-gal':[
-    {file:'LandUse_FourYears_2x2_Marble.png',label:'Land Use Price Comparison',sub:'Residential · Commercial · Industrial · Petrol Station · 2022–2025'}
+    {file:'LandUse_FourYears_2x2_Marble.png',label:'Land Use — Four Years (2022–2025)',sub:'Residential · Commercial · Industrial · Petrol Station · all wards'},
+    {file:'LandUse_Price_PetalMap_2025.png',label:'Land Use Price Petal Map',sub:'Ward-level land-use price profiles · 2025'},
+    {file:'LandUse_Simple_Bar.png',label:'Land Use Simple Bar Chart',sub:'Price by use category · Ubungo Municipality · 2025'}
   ]
 };
 Object.entries(GALLERIES).forEach(([id,figs])=>{
@@ -322,11 +283,8 @@ function show(id,el){
   hero.classList.remove('active');
   document.querySelectorAll('.section').forEach(s=>{s.classList.remove('active');s.style.display='';});
   document.querySelectorAll('nav a').forEach(a=>a.classList.remove('active'));
-  if(id==='hero'){
-    hero.classList.add('active');
-  } else {
-    document.getElementById(id).classList.add('active');
-  }
+  if(id==='hero'){hero.classList.add('active');}
+  else{document.getElementById(id).classList.add('active');}
   if(el)el.classList.add('active');
 }
 function toggleAbout(){
