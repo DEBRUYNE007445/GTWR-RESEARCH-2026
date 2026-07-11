@@ -8,14 +8,16 @@
 *{margin:0;padding:0;box-sizing:border-box}
 :root{--navy:#1a2744;--orange:#e07b39;--border:#dde1ea;--grey:#4a5568}
 body{font-family:'Segoe UI',Arial,sans-serif;color:var(--grey);background-image:url('marble_tile.jpeg');background-repeat:repeat;background-size:128px 128px}
-header{background:rgba(26,39,68,.88);backdrop-filter:blur(4px);padding:.7rem 1.5rem;display:flex;align-items:center;gap:1rem;position:sticky;top:0;z-index:100}
+#top-bar{background:rgba(26,39,68,.88);backdrop-filter:blur(4px);padding:.7rem 1.5rem;display:flex;align-items:center;gap:1rem;position:fixed;top:0;left:0;right:0;z-index:200;transition:transform .3s ease}
+#top-bar.hidden{transform:translateY(-100%)}
 .hbadge{background:var(--orange);color:#fff;font-size:10px;font-weight:700;padding:3px 8px;border-radius:4px;letter-spacing:.08em;white-space:nowrap;flex-shrink:0}
 .htitle{color:#fff;font-size:.85rem;font-weight:600;line-height:1.3;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
 .hsub{color:rgba(255,255,255,.55);font-size:10.5px;margin-top:1px}
-nav{background:rgba(26,39,68,.82);backdrop-filter:blur(4px);border-top:1px solid rgba(255,255,255,.1);display:flex;overflow-x:auto;position:sticky;top:50px;z-index:99}
+nav{background:rgba(26,39,68,.82);backdrop-filter:blur(4px);border-top:1px solid rgba(255,255,255,.1);display:flex;overflow-x:auto;position:fixed;top:50px;left:0;right:0;z-index:199;transition:transform .3s ease}
+nav.hidden{transform:translateY(-100px)}
 nav a{color:rgba(255,255,255,.65);text-decoration:none;padding:9px 16px;font-size:12.5px;white-space:nowrap;border-bottom:3px solid transparent;transition:all .2s;cursor:pointer}
 nav a:hover,nav a.active{color:#fff;border-bottom-color:var(--orange)}
-main{max-width:1100px;margin:0 auto;padding:1.8rem}
+main{max-width:1100px;margin:0 auto;padding:1.8rem;margin-top:96px}
 .section{display:none}.section.active{display:block}
 .page-title{font-size:1.1rem;font-weight:700;color:var(--navy);margin-bottom:3px}
 .page-sub{font-size:12.5px;color:#555;margin-bottom:1.3rem;line-height:1.5}
@@ -70,25 +72,29 @@ footer strong{color:#fff}
 .ab-label{color:var(--orange);font-size:9.5px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;margin-bottom:2px}
 .ab-val{color:#2a3a4a;font-size:12px;line-height:1.45}
 .help-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:1.5rem;margin-bottom:2rem}
-.help-card{background:rgba(255,255,255,.90);border:1px solid rgba(255,255,255,.6);border-radius:12px;overflow:hidden;backdrop-filter:blur(4px);text-align:center;padding:1.5rem}
-.help-photo{width:120px;height:120px;border-radius:50%;object-fit:cover;border:3px solid var(--navy);margin:0 auto 1rem;display:block}
-.help-name{font-size:15px;font-weight:700;color:var(--navy);margin-bottom:.3rem}
-.help-role{font-size:12px;color:var(--orange);font-weight:600;margin-bottom:1rem}
-.help-contact{list-style:none;text-align:left;font-size:12.5px;color:#444;line-height:2}
-.help-contact li{display:flex;align-items:center;gap:.5rem}
-.help-contact a{color:var(--navy);text-decoration:none}
+.help-card{background:rgba(255,255,255,.92);border:1px solid rgba(255,255,255,.6);border-radius:14px;backdrop-filter:blur(4px);text-align:center;padding:2rem 1.5rem}
+.help-photo{width:130px;height:130px;border-radius:50%;object-fit:cover;object-position:top;border:4px solid var(--navy);margin:0 auto 1rem;display:block;box-shadow:0 4px 16px rgba(0,0,0,.15)}
+.help-name{font-size:16px;font-weight:700;color:var(--navy);margin-bottom:.25rem}
+.help-id{font-size:12px;color:#888;margin-bottom:.25rem}
+.help-role{font-size:12.5px;color:var(--orange);font-weight:600;margin-bottom:1.2rem}
+.help-contact{list-style:none;text-align:left;font-size:13px;color:#444;line-height:2.2}
+.help-contact li{display:flex;align-items:center;gap:.6rem;padding:.1rem 0}
+.help-contact a{color:var(--navy);text-decoration:none;font-weight:500}
 .help-contact a:hover{text-decoration:underline;color:var(--orange)}
+.help-divider{border:none;border-top:1px solid rgba(26,39,68,.1);margin:1.2rem 0}
+.help-info{background:rgba(255,255,255,.88);border-radius:12px;padding:1.4rem 1.6rem;font-size:13px;color:#444;line-height:1.85;border:1px solid rgba(255,255,255,.6)}
+.help-info strong{color:var(--navy);font-size:14px}
 </style>
 </head>
 <body>
-<header>
+<div id="top-bar">
   <span class="hbadge">GTWR</span>
   <div style="min-width:0">
     <div class="htitle">Spatial-Temporal Analysis of Residential Land Price in Ubungo Municipal Using GTWR</div>
     <div class="hsub">Ardhi University &nbsp;·&nbsp; Bachelor's Dissertation &nbsp;·&nbsp; 2022–2025 &nbsp;·&nbsp; 14 Wards &nbsp;·&nbsp; 488 Observations</div>
   </div>
-</header>
-<nav>
+</div>
+<nav id="main-nav">
   <a class="active" onclick="show('hero',this)">Home</a>
   <a onclick="show('maps',this)">Spatial Maps</a>
   <a onclick="show('trends',this)">Price Trends</a>
@@ -171,12 +177,14 @@ footer strong{color:#fff}
 </div>
 <div id="help" class="section">
   <div class="page-title">Help &amp; Contact</div>
-  <div class="page-sub">For questions or feedback about this research dashboard, contact the authors below.</div>
+  <div class="page-sub">For questions or feedback about this research dashboard, please contact the authors directly using the details below.</div>
   <div class="help-grid">
     <div class="help-card">
       <img src="innocent.jpeg" alt="Innocent Stephano" class="help-photo" onerror="this.style.background='#dde1ea'">
       <div class="help-name">Innocent Stephano</div>
-      <div class="help-role">Co-Author · GIS &amp; RS III · 31879/T.2023</div>
+      <div class="help-id">Reg. No. 31879/T.2023</div>
+      <div class="help-role">Co-Author · GIS &amp; Remote Sensing III · Ardhi University</div>
+      <hr class="help-divider">
       <ul class="help-contact">
         <li>📧 <a href="mailto:centdebruyne007@gmail.com">centdebruyne007@gmail.com</a></li>
         <li>📧 <a href="mailto:centydebruyne17@gmail.com">centydebruyne17@gmail.com</a></li>
@@ -187,7 +195,9 @@ footer strong{color:#fff}
     <div class="help-card">
       <img src="loyce.jpeg" alt="Loyce Ezekiel" class="help-photo" onerror="this.style.background='#dde1ea'">
       <div class="help-name">Loyce Ezekiel</div>
-      <div class="help-role">Co-Author · GIS &amp; RS III · 30264/T.2023</div>
+      <div class="help-id">Reg. No. 30264/T.2023</div>
+      <div class="help-role">Co-Author · GIS &amp; Remote Sensing III · Ardhi University</div>
+      <hr class="help-divider">
       <ul class="help-contact">
         <li>📧 <a href="mailto:centdebruyne007@gmail.com">centdebruyne007@gmail.com</a></li>
         <li>📧 <a href="mailto:centydebruyne17@gmail.com">centydebruyne17@gmail.com</a></li>
@@ -196,9 +206,9 @@ footer strong{color:#fff}
       </ul>
     </div>
   </div>
-  <div style="background:rgba(255,255,255,.85);border-radius:12px;padding:1.2rem 1.5rem;font-size:12.5px;color:#444;line-height:1.8;border:1px solid rgba(255,255,255,.6)">
-    <strong style="color:var(--navy)">About This Dashboard</strong><br>
-    This research dashboard was developed as a supplementary output to the Bachelor's dissertation submitted to the Department of Geospatial Science and Technology, Ardhi University, Dar es Salaam, 2026. All spatial analysis was conducted using ArcMap 10.8 and Python. The GTWR model was implemented using the mgwr library.
+  <div class="help-info">
+    <strong>About This Dashboard</strong><br>
+    This research dashboard was developed as a supplementary output to the Bachelor's dissertation submitted to the Department of Geospatial Science and Technology, Ardhi University, Dar es Salaam, 2026. All spatial data processing and cartographic output was carried out in ArcMap 10.8. Statistical modelling, covariate construction, and 2040 projections were implemented in Python 3 using the pandas, numpy, scipy, statsmodels, and mgwr libraries. The dashboard is hosted on GitHub Pages and is accessible at <a href="https://DEBRUYNE007445.github.io/GTWR-RESEARCH-DASHBOARD" target="_blank" style="color:var(--orange)">DEBRUYNE007445.github.io/GTWR-RESEARCH-DASHBOARD</a>.
   </div>
 </div>
 </main>
@@ -253,12 +263,12 @@ const GALLERIES={
   'traj-gal':[
     {file:'final_trejector.png',label:'Price Trajectories',sub:'All 14 wards · 2022–2025'},
     {file:'projected_price.png',label:'Directional Rose 2040 Scenario',sub:'WNW & NE highest value corridors'},
-    {file:'Ubungo_LandPrice_Projection_Map.png',label:'Land Price Projection Map 2040',sub:'Scenario projection from 2025 base'}
+    {file:'2040projection.png',label:'Land Price Projection Map 2040',sub:'Scenario projection from 2025 base'}
   ],
   'other-gal':[
     {file:'LAND_USE_UBUNGO_PRICE.png',label:'Land Use Choropleth — Ubungo',sub:'Residential land use price distribution · Ubungo Municipality'},
     {file:'LandUse_Price_PetalMap_2025.png',label:'Land Use Price Petal Map',sub:'Ward-level land-use price profiles · 2025'},
-    {file:'LandUse_FourYears_2x2_Marble.png',label:'Land Use Four Years (2022–2025)',sub:'Residential · Commercial · Industrial · Petrol Station · all wards'}
+    {file:'CHROLOPLTH.png',label:'Land Use Choropleth (2022–2025)',sub:'Residential · Commercial · Industrial · Petrol Station · all wards'}
   ]
 };
 Object.entries(GALLERIES).forEach(([id,figs])=>{
@@ -294,6 +304,28 @@ function toggleAbout(){
   if(p.style.display==='none'){p.style.display='block';b.textContent='About This Research ▴';}
   else{p.style.display='none';b.textContent='About This Research ▾';}
 }
+// Auto-hide header on scroll, show on mouse move to top
+let lastScroll=0;
+let hideTimer=null;
+const topBar=document.getElementById('top-bar');
+const mainNav=document.getElementById('main-nav');
+window.addEventListener('scroll',()=>{
+  const cur=window.scrollY;
+  if(cur>lastScroll && cur>80){
+    topBar.classList.add('hidden');
+    mainNav.classList.add('hidden');
+  } else {
+    topBar.classList.remove('hidden');
+    mainNav.classList.remove('hidden');
+  }
+  lastScroll=cur;
+});
+document.addEventListener('mousemove',e=>{
+  if(e.clientY<80){
+    topBar.classList.remove('hidden');
+    mainNav.classList.remove('hidden');
+  }
+});
 </script>
 </body>
 </html>
