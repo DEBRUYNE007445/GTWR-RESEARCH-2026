@@ -8,6 +8,94 @@
 *{margin:0;padding:0;box-sizing:border-box}
 :root{--navy:#1a2744;--orange:#e07b39;--border:#dde1ea;--grey:#4a5568}
 body{font-family:'Segoe UI',Arial,sans-serif;color:var(--grey);background-image:url('marble_tile.jpeg');background-repeat:repeat;background-size:128px 128px}
+
+/* ── INTRO SCREEN ─────────────────────────────────────────────── */
+#intro{
+  position:fixed;inset:0;z-index:9000;
+  display:flex;flex-direction:column;
+  align-items:center;justify-content:center;
+  background:url('one.avif') center center / cover no-repeat;
+  cursor:pointer;overflow:hidden
+}
+#intro::before{
+  content:'';position:absolute;inset:0;
+  background:rgba(5,15,35,.60);z-index:0
+}
+#intro-content{
+  position:relative;z-index:1;
+  text-align:center;padding:2rem;
+  animation:fadeInUp 1.2s ease forwards
+}
+@keyframes fadeInUp{
+  from{opacity:0;transform:translateY(40px)}
+  to{opacity:1;transform:translateY(0)}
+}
+#intro-badge{
+  display:inline-block;
+  background:var(--orange);color:#fff;
+  font-size:11px;font-weight:700;
+  letter-spacing:.18em;text-transform:uppercase;
+  padding:5px 16px;border-radius:20px;
+  margin-bottom:1.6rem
+}
+#intro-title{
+  color:#fff;
+  font-size:clamp(1.6rem,5vw,3.2rem);
+  font-weight:800;
+  letter-spacing:.06em;
+  text-transform:uppercase;
+  line-height:1.2;
+  margin-bottom:1rem;
+  text-shadow:0 2px 24px rgba(0,0,0,.5)
+}
+#intro-year{
+  color:var(--orange);
+  font-size:clamp(2rem,7vw,5rem);
+  font-weight:900;
+  letter-spacing:.12em;
+  line-height:1;
+  margin-bottom:2rem;
+  text-shadow:0 0 40px rgba(224,123,57,.6)
+}
+#intro-sub{
+  color:rgba(255,255,255,.70);
+  font-size:clamp(.85rem,2vw,1.1rem);
+  letter-spacing:.04em;
+  margin-bottom:2.5rem
+}
+#intro-enter{
+  display:inline-block;
+  border:2px solid rgba(255,255,255,.5);
+  color:#fff;
+  padding:12px 36px;
+  border-radius:40px;
+  font-size:13px;
+  font-weight:600;
+  letter-spacing:.1em;
+  text-transform:uppercase;
+  animation:blink 2s ease infinite
+}
+@keyframes blink{
+  0%,100%{opacity:1}50%{opacity:.4}
+}
+/* Progress bar */
+#intro-bar-wrap{
+  position:absolute;bottom:0;left:0;right:0;
+  height:4px;background:rgba(255,255,255,.15)
+}
+#intro-bar{
+  height:100%;width:0;
+  background:var(--orange);
+  transition:width linear
+}
+/* Fade out */
+#intro.fadeout{
+  animation:introFade .8s ease forwards
+}
+@keyframes introFade{
+  to{opacity:0;pointer-events:none}
+}
+
 #top-bar{background:url('two.jfif') center center / cover no-repeat;backdrop-filter:blur(2px);padding:.7rem 1.5rem;display:flex;align-items:center;gap:1rem;position:fixed;top:0;left:0;right:0;z-index:200;transition:transform .3s ease}
 #top-bar.hidden{transform:translateY(-100%)}
 .hbadge{background:var(--orange);color:#fff;font-size:10px;font-weight:700;padding:3px 8px;border-radius:4px;letter-spacing:.08em;white-space:nowrap;flex-shrink:0}
@@ -85,31 +173,31 @@ footer strong{color:#fff}
 .help-info{background:rgba(255,255,255,.88);border-radius:12px;padding:1.4rem 1.6rem;font-size:13px;color:#444;line-height:1.85;border:1px solid rgba(255,255,255,.6)}
 .help-info strong{color:var(--navy);font-size:14px}
 .pills-group-label{width:100%;font-size:10px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:#888;padding:4px 2px 2px;margin-top:4px}
-/* ── Voice button ──────────────────────────────────────────────── */
-#voice-btn{
-  position:fixed;bottom:24px;right:24px;z-index:500;
-  width:54px;height:54px;border-radius:50%;
-  background:var(--navy);border:2px solid rgba(255,255,255,.2);
-  color:#fff;font-size:22px;cursor:pointer;
-  display:flex;align-items:center;justify-content:center;
-  box-shadow:0 4px 20px rgba(0,0,0,.35);
-  transition:background .2s,transform .2s
-}
+#voice-btn{position:fixed;bottom:24px;right:24px;z-index:500;width:54px;height:54px;border-radius:50%;background:var(--navy);border:2px solid rgba(255,255,255,.2);color:#fff;font-size:22px;cursor:pointer;display:flex;align-items:center;justify-content:center;box-shadow:0 4px 20px rgba(0,0,0,.35);transition:background .2s,transform .2s}
 #voice-btn:hover{background:#243560;transform:scale(1.08)}
 #voice-btn.listening{background:#c0392b;animation:pulse 1s infinite}
 @keyframes pulse{0%,100%{box-shadow:0 0 0 0 rgba(192,57,43,.5)}50%{box-shadow:0 0 0 12px rgba(192,57,43,0)}}
-#voice-toast{
-  position:fixed;bottom:88px;right:24px;z-index:501;
-  background:rgba(26,39,68,.95);color:#fff;
-  font-size:12.5px;padding:8px 14px;border-radius:8px;
-  max-width:220px;text-align:center;line-height:1.5;
-  display:none;backdrop-filter:blur(4px);
-  border:1px solid rgba(255,255,255,.15)
-}
+#voice-toast{position:fixed;bottom:88px;right:24px;z-index:501;background:rgba(26,39,68,.95);color:#fff;font-size:12.5px;padding:8px 14px;border-radius:8px;max-width:220px;text-align:center;line-height:1.5;display:none;backdrop-filter:blur(4px);border:1px solid rgba(255,255,255,.15)}
 #voice-toast.show{display:block}
 </style>
 </head>
 <body>
+
+<!-- ══ INTRO SCREEN ══════════════════════════════════════════════ -->
+<div id="intro" onclick="dismissIntro()">
+  <div id="intro-content">
+    <div id="intro-badge">Ardhi University · GI 471 Dissertation · 2026</div>
+    <div id="intro-title">You Are Now Entering</div>
+    <div id="intro-year">RESEARCH 2026</div>
+    <div id="intro-sub">
+      Spatial-Temporal Analysis of Residential Land Price Dynamics<br>
+      Ubungo Municipality · GTWR Model · 14 Wards · 488 Observations
+    </div>
+    <div id="intro-enter">Click anywhere to enter →</div>
+  </div>
+  <div id="intro-bar-wrap"><div id="intro-bar"></div></div>
+</div>
+
 <div id="top-bar">
   <span class="hbadge">GTWR</span>
   <div style="min-width:0">
@@ -231,18 +319,15 @@ footer strong{color:#fff}
   </div>
   <div class="help-info">
     <strong>About This Dashboard</strong><br>
-    This research dashboard was developed as a supplementary output to the Bachelor's dissertation submitted to the Department of Geospatial Science and Technology, Ardhi University, Dar es Salaam, 2026. All spatial data processing and cartographic output was carried out in ArcMap 10.8. Statistical modelling, covariate construction, and 2040 projections were implemented in Python 3 using the pandas, numpy, scipy, statsmodels, and mgwr libraries. The dashboard is hosted on GitHub Pages and is accessible at <a href="https://DEBRUYNE007445.github.io/GTWR-RESEARCH-DASHBOARD" target="_blank" style="color:var(--orange)">DEBRUYNE007445.github.io/GTWR-RESEARCH-DASHBOARD</a>.
+    This research dashboard was developed as a supplementary output to the Bachelor's dissertation submitted to the Department of Geospatial Science and Technology, Ardhi University, Dar es Salaam, 2026. All spatial data processing and cartographic output was carried out in ArcMap 10.8. Statistical modelling, covariate construction, and 2040 projections were implemented in Python 3 using the pandas, numpy, scipy, statsmodels, and mgwr libraries. The dashboard is hosted on GitHub Pages at <a href="https://DEBRUYNE007445.github.io/GTWR-RESEARCH-DASHBOARD" target="_blank" style="color:var(--orange)">DEBRUYNE007445.github.io/GTWR-RESEARCH-DASHBOARD</a>.
     <br><br>
     <strong>Voice Navigation</strong><br>
-    Click the 🎤 microphone button (bottom-right) and say a section name to navigate hands-free. Commands: <em>home, spatial maps, price trends, GTWR results, correlations, trajectories, other figures, help</em>. Requires microphone permission and Chrome or Edge browser.
+    Click the 🎤 button (bottom-right) and say a section name to navigate hands-free. Commands: <em>home, spatial maps, price trends, GTWR results, correlations, trajectories, other figures, help</em>. Requires Chrome or Edge and microphone permission.
   </div>
 </div>
 </main>
-
-<!-- Voice button + toast -->
-<button id="voice-btn" title="Voice navigation — click and speak a section name">🎤</button>
+<button id="voice-btn" title="Voice navigation">🎤</button>
 <div id="voice-toast"></div>
-
 <div id="lb" onclick="closeLB()">
   <button id="lb-close" onclick="closeLB()">×</button>
   <img id="lb-img" src="" alt="">
@@ -252,6 +337,49 @@ footer strong{color:#fff}
   Prepared by <strong>Centy de Bruyne &amp; Preciouce Luy</strong> &nbsp;·&nbsp; GIS &amp; RS III &nbsp;·&nbsp; Ardhi University &nbsp;·&nbsp; 2026
 </footer>
 <script>
+// ── INTRO ────────────────────────────────────────────────────────
+const INTRO_DURATION=6000; // ms before auto-dismiss
+let introDismissed=false;
+
+function dismissIntro(){
+  if(introDismissed)return;
+  introDismissed=true;
+  const intro=document.getElementById('intro');
+  intro.classList.add('fadeout');
+  setTimeout(()=>{intro.style.display='none';},800);
+}
+
+window.addEventListener('load',()=>{
+  // Greeting via Web Speech Synthesis
+  setTimeout(()=>{
+    if('speechSynthesis' in window){
+      const utt=new SpeechSynthesisUtterance('Hello! Welcome to the GTWR Research Dashboard 2026.');
+      utt.rate=0.95;utt.pitch=1.05;utt.volume=1;
+      // Try to pick a natural voice
+      const voices=window.speechSynthesis.getVoices();
+      const preferred=voices.find(v=>v.lang.startsWith('en')&&v.name.toLowerCase().includes('female'))
+                    ||voices.find(v=>v.lang.startsWith('en'))
+                    ||voices[0];
+      if(preferred)utt.voice=preferred;
+      window.speechSynthesis.speak(utt);
+    }
+  },600);
+
+  // Progress bar animation
+  const bar=document.getElementById('intro-bar');
+  bar.style.transition=`width ${INTRO_DURATION}ms linear`;
+  setTimeout(()=>{bar.style.width='100%';},50);
+
+  // Auto-dismiss after INTRO_DURATION
+  setTimeout(dismissIntro, INTRO_DURATION);
+});
+
+// Also handle voices loading asynchronously (some browsers)
+if('speechSynthesis' in window){
+  window.speechSynthesis.onvoiceschanged=()=>{};
+}
+
+// ── MAPS ─────────────────────────────────────────────────────────
 const MAPS=[
   {label:'BRT Accessibility',file:'GTWR_BRT_coef_EDITED_STYLE.png',title:'GTWR BRT Accessibility Coefficient Distribution',sub:'GTWR Coefficient · 2022–2025 · Ubungo Municipality',cap:'Spatial distribution of the BRT accessibility coefficient. Pearson r = −0.623 with log(price). BRT collinearity with road distance (r = 0.98) addressed via ridge regularisation (λ = 0.05).'},
   {label:'CBD Accessibility',file:'GTWR_CBD_coef_EDITED_STYLE.png',title:'GTWR CBD Accessibility Coefficient Distribution',sub:'GTWR Coefficient · 2022–2025 · Ubungo Municipality',cap:'Weak global influence (Pearson r = −0.156) due to Ubungo\'s narrow CBD distance range. Local coefficients reveal stronger effects near the urban core.'},
@@ -280,8 +408,7 @@ groups.forEach(g=>{
     b.onclick=(function(map,btn){
       return ()=>{
         document.querySelectorAll('.pill').forEach(p=>p.classList.remove('active'));
-        btn.classList.add('active');
-        loadMap(map);
+        btn.classList.add('active');loadMap(map);
       };
     })(m,b);
     pillsDiv.appendChild(b);
@@ -327,16 +454,14 @@ Object.entries(GALLERIES).forEach(([id,figs])=>{
   figs.forEach(f=>{el.innerHTML+=`<div class="gal-card" onclick="openLB('${f.file}','${f.label}')"><img src="${f.file}" alt="${f.label}" loading="lazy"><div class="gl">${f.label}</div><div class="gs">${f.sub}</div></div>`;});
 });
 function openLB(src,cap){
-  const lb=document.getElementById('lb');
-  lb.style.display='';
+  const lb=document.getElementById('lb');lb.style.display='';
   document.getElementById('lb-img').src=src;
   document.getElementById('lb-cap').textContent=cap;
   lb.classList.add('open');
 }
 function closeLB(){
   const lb=document.getElementById('lb');
-  lb.classList.remove('open');
-  lb.style.display='none';
+  lb.classList.remove('open');lb.style.display='none';
   document.getElementById('lb-img').src='';
 }
 document.addEventListener('keydown',e=>{if(e.key==='Escape')closeLB();});
@@ -360,7 +485,7 @@ const topBar=document.getElementById('top-bar');
 const mainNav=document.getElementById('main-nav');
 window.addEventListener('scroll',()=>{
   const cur=window.scrollY;
-  if(cur>lastScroll && cur>80){topBar.classList.add('hidden');mainNav.classList.add('hidden');}
+  if(cur>lastScroll&&cur>80){topBar.classList.add('hidden');mainNav.classList.add('hidden');}
   else{topBar.classList.remove('hidden');mainNav.classList.remove('hidden');}
   lastScroll=cur;
 });
@@ -368,12 +493,10 @@ document.addEventListener('mousemove',e=>{
   if(e.clientY<80){topBar.classList.remove('hidden');mainNav.classList.remove('hidden');}
 });
 
-// ── VOICE NAVIGATION ───────────────────────────────────────────
+// ── VOICE NAVIGATION ──────────────────────────────────────────────
 const voiceBtn=document.getElementById('voice-btn');
 const voiceToast=document.getElementById('voice-toast');
 const navLinks=document.querySelectorAll('nav a');
-
-// Section keyword map — supports English + some Swahili alternatives
 const VOICE_MAP=[
   {keys:['home','nyumbani','mwanzo'],id:'hero',navIdx:0},
   {keys:['spatial','spatial map','spatial maps','ramani','map'],id:'maps',navIdx:1},
@@ -384,20 +507,17 @@ const VOICE_MAP=[
   {keys:['other','other figures','takwimu nyingine','matumizi'],id:'other',navIdx:6},
   {keys:['help','msaada','mawasiliano','contact'],id:'help',navIdx:7},
 ];
-
 function showToast(msg,duration=2500){
-  voiceToast.textContent=msg;
-  voiceToast.classList.add('show');
+  voiceToast.textContent=msg;voiceToast.classList.add('show');
   clearTimeout(voiceToast._t);
   voiceToast._t=setTimeout(()=>voiceToast.classList.remove('show'),duration);
 }
-
 function handleVoiceCommand(transcript){
   const t=transcript.toLowerCase().trim();
   for(const entry of VOICE_MAP){
     if(entry.keys.some(k=>t.includes(k))){
       const navEl=navLinks[entry.navIdx];
-      show(entry.id, navEl);
+      show(entry.id,navEl);
       showToast('✓ Navigating to: '+navEl.textContent.trim());
       return true;
     }
@@ -405,52 +525,30 @@ function handleVoiceCommand(transcript){
   showToast('❓ Not recognised: "'+transcript+'"',3000);
   return false;
 }
-
-let recognition=null;
-let isListening=false;
-
-if('webkitSpeechRecognition' in window || 'SpeechRecognition' in window){
+let recognition=null,isListening=false;
+if('webkitSpeechRecognition' in window||'SpeechRecognition' in window){
   const SR=window.SpeechRecognition||window.webkitSpeechRecognition;
   recognition=new SR();
-  recognition.lang='en-US';
-  recognition.interimResults=false;
-  recognition.maxAlternatives=3;
-  recognition.continuous=false;
-
-  recognition.onstart=()=>{
-    isListening=true;
-    voiceBtn.classList.add('listening');
-    voiceBtn.textContent='🔴';
-    showToast('🎤 Listening… say a section name',4000);
-  };
+  recognition.lang='en-US';recognition.interimResults=false;
+  recognition.maxAlternatives=3;recognition.continuous=false;
+  recognition.onstart=()=>{isListening=true;voiceBtn.classList.add('listening');voiceBtn.textContent='🔴';showToast('🎤 Listening… say a section name',4000);};
   recognition.onresult=(e)=>{
     const results=Array.from(e.results[0]).map(r=>r.transcript);
     let matched=false;
-    for(const r of results){
-      if(handleVoiceCommand(r)){matched=true;break;}
-    }
-    if(!matched) handleVoiceCommand(results[0]);
+    for(const r of results){if(handleVoiceCommand(r)){matched=true;break;}}
+    if(!matched)handleVoiceCommand(results[0]);
   };
   recognition.onerror=(e)=>{
-    if(e.error==='no-speech'){showToast('No speech detected — try again');}
-    else if(e.error==='not-allowed'){showToast('Microphone access denied');}
-    else{showToast('Error: '+e.error);}
+    if(e.error==='no-speech')showToast('No speech detected — try again');
+    else if(e.error==='not-allowed')showToast('Microphone access denied');
+    else showToast('Error: '+e.error);
   };
-  recognition.onend=()=>{
-    isListening=false;
-    voiceBtn.classList.remove('listening');
-    voiceBtn.textContent='🎤';
-  };
-
+  recognition.onend=()=>{isListening=false;voiceBtn.classList.remove('listening');voiceBtn.textContent='🎤';};
   voiceBtn.addEventListener('click',()=>{
-    if(isListening){recognition.stop();}
-    else{
-      try{recognition.start();}
-      catch(e){showToast('Could not start microphone');}
-    }
+    if(isListening)recognition.stop();
+    else{try{recognition.start();}catch(e){showToast('Could not start microphone');}}
   });
-} else {
-  voiceBtn.title='Voice navigation not supported in this browser. Use Chrome or Edge.';
+}else{
   voiceBtn.style.opacity='.45';
   voiceBtn.addEventListener('click',()=>showToast('Voice not supported — use Chrome or Edge'));
 }
