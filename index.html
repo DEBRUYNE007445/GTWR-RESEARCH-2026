@@ -8,94 +8,20 @@
 *{margin:0;padding:0;box-sizing:border-box}
 :root{--navy:#1a2744;--orange:#e07b39;--border:#dde1ea;--grey:#4a5568}
 body{font-family:'Segoe UI',Arial,sans-serif;color:var(--grey);background-image:url('marble_tile.jpeg');background-repeat:repeat;background-size:128px 128px}
-
-/* ── INTRO SCREEN ─────────────────────────────────────────────── */
-#intro{
-  position:fixed;inset:0;z-index:9000;
-  display:flex;flex-direction:column;
-  align-items:center;justify-content:center;
-  background:url('one.avif') center center / cover no-repeat;
-  cursor:pointer;overflow:hidden
-}
-#intro::before{
-  content:'';position:absolute;inset:0;
-  background:rgba(5,15,35,.60);z-index:0
-}
-#intro-content{
-  position:relative;z-index:1;
-  text-align:center;padding:2rem;
-  animation:fadeInUp 1.2s ease forwards
-}
-@keyframes fadeInUp{
-  from{opacity:0;transform:translateY(40px)}
-  to{opacity:1;transform:translateY(0)}
-}
-#intro-badge{
-  display:inline-block;
-  background:var(--orange);color:#fff;
-  font-size:11px;font-weight:700;
-  letter-spacing:.18em;text-transform:uppercase;
-  padding:5px 16px;border-radius:20px;
-  margin-bottom:1.6rem
-}
-#intro-title{
-  color:#fff;
-  font-size:clamp(1.6rem,5vw,3.2rem);
-  font-weight:800;
-  letter-spacing:.06em;
-  text-transform:uppercase;
-  line-height:1.2;
-  margin-bottom:1rem;
-  text-shadow:0 2px 24px rgba(0,0,0,.5)
-}
-#intro-year{
-  color:var(--orange);
-  font-size:clamp(2rem,7vw,5rem);
-  font-weight:900;
-  letter-spacing:.12em;
-  line-height:1;
-  margin-bottom:2rem;
-  text-shadow:0 0 40px rgba(224,123,57,.6)
-}
-#intro-sub{
-  color:rgba(255,255,255,.70);
-  font-size:clamp(.85rem,2vw,1.1rem);
-  letter-spacing:.04em;
-  margin-bottom:2.5rem
-}
-#intro-enter{
-  display:inline-block;
-  border:2px solid rgba(255,255,255,.5);
-  color:#fff;
-  padding:12px 36px;
-  border-radius:40px;
-  font-size:13px;
-  font-weight:600;
-  letter-spacing:.1em;
-  text-transform:uppercase;
-  animation:blink 2s ease infinite
-}
-@keyframes blink{
-  0%,100%{opacity:1}50%{opacity:.4}
-}
-/* Progress bar */
-#intro-bar-wrap{
-  position:absolute;bottom:0;left:0;right:0;
-  height:4px;background:rgba(255,255,255,.15)
-}
-#intro-bar{
-  height:100%;width:0;
-  background:var(--orange);
-  transition:width linear
-}
-/* Fade out */
-#intro.fadeout{
-  animation:introFade .8s ease forwards
-}
-@keyframes introFade{
-  to{opacity:0;pointer-events:none}
-}
-
+#intro{position:fixed;inset:0;z-index:9000;display:flex;flex-direction:column;align-items:center;justify-content:center;background:url('one.avif') center center / cover no-repeat;cursor:pointer;overflow:hidden}
+#intro::before{content:'';position:absolute;inset:0;background:rgba(5,15,35,.60);z-index:0}
+#intro-content{position:relative;z-index:1;text-align:center;padding:2rem;animation:fadeInUp 1.2s ease forwards}
+@keyframes fadeInUp{from{opacity:0;transform:translateY(40px)}to{opacity:1;transform:translateY(0)}}
+#intro-badge{display:inline-block;background:var(--orange);color:#fff;font-size:11px;font-weight:700;letter-spacing:.18em;text-transform:uppercase;padding:5px 16px;border-radius:20px;margin-bottom:1.6rem}
+#intro-title{color:#fff;font-size:clamp(1.6rem,5vw,3.2rem);font-weight:800;letter-spacing:.06em;text-transform:uppercase;line-height:1.2;margin-bottom:1rem;text-shadow:0 2px 24px rgba(0,0,0,.5)}
+#intro-year{color:var(--orange);font-size:clamp(2rem,7vw,5rem);font-weight:900;letter-spacing:.12em;line-height:1;margin-bottom:2rem;text-shadow:0 0 40px rgba(224,123,57,.6)}
+#intro-sub{color:rgba(255,255,255,.70);font-size:clamp(.85rem,2vw,1.1rem);letter-spacing:.04em;margin-bottom:2.5rem}
+#intro-enter{display:inline-block;border:2px solid rgba(255,255,255,.5);color:#fff;padding:12px 36px;border-radius:40px;font-size:13px;font-weight:600;letter-spacing:.1em;text-transform:uppercase;animation:blink 2s ease infinite}
+@keyframes blink{0%,100%{opacity:1}50%{opacity:.4}}
+#intro-bar-wrap{position:absolute;bottom:0;left:0;right:0;height:4px;background:rgba(255,255,255,.15)}
+#intro-bar{height:100%;width:0;background:var(--orange);transition:width linear}
+#intro.fadeout{animation:introFade .8s ease forwards}
+@keyframes introFade{to{opacity:0;pointer-events:none}}
 #top-bar{background:url('two.jfif') center center / cover no-repeat;backdrop-filter:blur(2px);padding:.7rem 1.5rem;display:flex;align-items:center;gap:1rem;position:fixed;top:0;left:0;right:0;z-index:200;transition:transform .3s ease}
 #top-bar.hidden{transform:translateY(-100%)}
 .hbadge{background:var(--orange);color:#fff;font-size:10px;font-weight:700;padding:3px 8px;border-radius:4px;letter-spacing:.08em;white-space:nowrap;flex-shrink:0}
@@ -182,22 +108,16 @@ footer strong{color:#fff}
 </style>
 </head>
 <body>
-
-<!-- ══ INTRO SCREEN ══════════════════════════════════════════════ -->
 <div id="intro" onclick="dismissIntro()">
   <div id="intro-content">
     <div id="intro-badge">Ardhi University · GI 471 Dissertation · 2026</div>
     <div id="intro-title">You Are Now Entering</div>
     <div id="intro-year">RESEARCH 2026</div>
-    <div id="intro-sub">
-      Spatial-Temporal Analysis of Residential Land Price Dynamics<br>
-      Ubungo Municipality · GTWR Model · 14 Wards · 488 Observations
-    </div>
+    <div id="intro-sub">Spatial-Temporal Analysis of Residential Land Price Dynamics<br>Ubungo Municipality · GTWR Model · 14 Wards · 488 Observations</div>
     <div id="intro-enter">Click anywhere to enter →</div>
   </div>
   <div id="intro-bar-wrap"><div id="intro-bar"></div></div>
 </div>
-
 <div id="top-bar">
   <span class="hbadge">GTWR</span>
   <div style="min-width:0">
@@ -337,10 +257,8 @@ footer strong{color:#fff}
   Prepared by <strong>Centy de Bruyne &amp; Preciouce Luy</strong> &nbsp;·&nbsp; GIS &amp; RS III &nbsp;·&nbsp; Ardhi University &nbsp;·&nbsp; 2026
 </footer>
 <script>
-// ── INTRO ────────────────────────────────────────────────────────
-const INTRO_DURATION=6000; // ms before auto-dismiss
+const INTRO_DURATION=6000;
 let introDismissed=false;
-
 function dismissIntro(){
   if(introDismissed)return;
   introDismissed=true;
@@ -348,38 +266,24 @@ function dismissIntro(){
   intro.classList.add('fadeout');
   setTimeout(()=>{intro.style.display='none';},800);
 }
-
 window.addEventListener('load',()=>{
-  // Greeting via Web Speech Synthesis
   setTimeout(()=>{
     if('speechSynthesis' in window){
       const utt=new SpeechSynthesisUtterance('Hello! Welcome to the GTWR Research Dashboard 2026.');
       utt.rate=0.95;utt.pitch=1.05;utt.volume=1;
-      // Try to pick a natural voice
       const voices=window.speechSynthesis.getVoices();
-      const preferred=voices.find(v=>v.lang.startsWith('en')&&v.name.toLowerCase().includes('female'))
-                    ||voices.find(v=>v.lang.startsWith('en'))
-                    ||voices[0];
+      const preferred=voices.find(v=>v.lang.startsWith('en')&&v.name.toLowerCase().includes('female'))||voices.find(v=>v.lang.startsWith('en'))||voices[0];
       if(preferred)utt.voice=preferred;
       window.speechSynthesis.speak(utt);
     }
   },600);
-
-  // Progress bar animation
   const bar=document.getElementById('intro-bar');
   bar.style.transition=`width ${INTRO_DURATION}ms linear`;
   setTimeout(()=>{bar.style.width='100%';},50);
-
-  // Auto-dismiss after INTRO_DURATION
-  setTimeout(dismissIntro, INTRO_DURATION);
+  setTimeout(dismissIntro,INTRO_DURATION);
 });
+if('speechSynthesis' in window){window.speechSynthesis.onvoiceschanged=()=>{};}
 
-// Also handle voices loading asynchronously (some browsers)
-if('speechSynthesis' in window){
-  window.speechSynthesis.onvoiceschanged=()=>{};
-}
-
-// ── MAPS ─────────────────────────────────────────────────────────
 const MAPS=[
   {label:'BRT Accessibility',file:'GTWR_BRT_coef_EDITED_STYLE.png',title:'GTWR BRT Accessibility Coefficient Distribution',sub:'GTWR Coefficient · 2022–2025 · Ubungo Municipality',cap:'Spatial distribution of the BRT accessibility coefficient. Pearson r = −0.623 with log(price). BRT collinearity with road distance (r = 0.98) addressed via ridge regularisation (λ = 0.05).'},
   {label:'CBD Accessibility',file:'GTWR_CBD_coef_EDITED_STYLE.png',title:'GTWR CBD Accessibility Coefficient Distribution',sub:'GTWR Coefficient · 2022–2025 · Ubungo Municipality',cap:'Weak global influence (Pearson r = −0.156) due to Ubungo\'s narrow CBD distance range. Local coefficients reveal stronger effects near the urban core.'},
@@ -390,10 +294,12 @@ const MAPS=[
   {label:'Factor Correlation',file:'GTWR_Same_Factors_Correlation_With_NTL.png',title:'GTWR Factor Correlation with NTL',sub:'Correlation Analysis · Ubungo Municipality',cap:'Inter-predictor relationships including night-time light. Informed ridge regularisation decisions for collinear variables (BRT & road, r = 0.98).'},
   {label:'Health Accessibility',file:'GTWR_Health_coef_EDITED_STYLE.png',title:'GTWR Health Accessibility Coefficient Distribution',sub:'Other Factor · 2022–2025 · Ubungo Municipality',cap:'Spatial distribution of the health facility accessibility coefficient across Ubungo\'s 14 wards, 2022–2025.'},
   {label:'Police Accessibility',file:'GTWR_Police_coef_EDITED_STYLE.png',title:'GTWR Police Accessibility Coefficient Distribution',sub:'Other Factor · 2022–2025 · Ubungo Municipality',cap:'Spatial distribution of the police station accessibility coefficient across Ubungo\'s 14 wards, 2022–2025.'},
-  {label:'School Accessibility',file:'GTWR_School_coef_EDITED_STYLE.png',title:'GTWR School Accessibility Coefficient Distribution',sub:'Other Factor · 2022–2025 · Ubungo Municipality',cap:'Spatial distribution of the school accessibility coefficient across Ubungo\'s 14 wards, 2022–2025.'}
+  {label:'School Accessibility',file:'GTWR_School_coef_EDITED_STYLE.png',title:'GTWR School Accessibility Coefficient Distribution',sub:'Other Factor · 2022–2025 · Ubungo Municipality',cap:'Spatial distribution of the school accessibility coefficient across Ubungo\'s 14 wards, 2022–2025.'},
+  {label:'Spatial 2040 Projection',file:'spatial2040.jpeg',title:'Spatial Land Price Projection — 2025 to 2040',sub:'4-Panel Choropleth · Ubungo Municipality',cap:'Ward-level projected land price distribution for 2025, 2030, 2035 and 2040 based on GTWR-derived CAGR per ward.'}
 ];
+
 const pillsDiv=document.getElementById('pills');
-const groups=[{label:'Core Predictors',count:7},{label:'Other Factors',count:3}];
+const groups=[{label:'Core Predictors',count:7},{label:'Other Factors',count:3},{label:'Projection',count:1}];
 let mapIdx=0;
 groups.forEach(g=>{
   const lbl=document.createElement('div');
@@ -415,6 +321,7 @@ groups.forEach(g=>{
     mapIdx++;
   }
 });
+
 function loadMap(m){
   document.getElementById('mh-title').textContent=m.title;
   document.getElementById('mh-sub').textContent=m.sub;
@@ -423,6 +330,7 @@ function loadMap(m){
   document.getElementById('map-cap').textContent=m.cap;
 }
 loadMap(MAPS[0]);
+
 const GALLERIES={
   'trends-gal':[
     {file:'Maximum_Land_Price_Trend_fixed.png',label:'Maximum Land Price Trend',sub:'Per ward · 2022–2025'},
@@ -439,20 +347,24 @@ const GALLERIES={
     {file:'GTWR_Same_Factors_Correlation_With_NTL.png',label:'Factor Correlation with NTL',sub:'Inter-predictor relationships'}
   ],
   'traj-gal':[
-    {file:'final_trejector.png',label:'Price Trajectories',sub:'All 14 wards · 2022–2025'},
+    {file:'final_trejector.png',label:'Price Trajectories 2022–2025',sub:'All 14 wards · historical and forecast'},
+    {file:'trejectornew.jpeg',label:'Price Growth Trajectory 2022–2040',sub:'Municipal average and ward-level growth · full projection'},
     {file:'projected_price.png',label:'Directional Rose 2040 Scenario',sub:'WNW & NE highest value corridors'},
     {file:'2040projection.png',label:'Land Price Projection Map 2040',sub:'Scenario projection from 2025 base'}
   ],
   'other-gal':[
     {file:'LAND_USE_UBUNGO_PRICE.png',label:'Land Use Choropleth — Ubungo',sub:'Residential land use price distribution · Ubungo Municipality'},
     {file:'LandUse_Price_PetalMap_2025.png',label:'Land Use Price Petal Map',sub:'Ward-level land-use price profiles · 2025'},
-    {file:'CHROLOPLTH.png',label:'Land Use Choropleth (2022–2025)',sub:'Residential · Commercial · Industrial · Petrol Station · all wards'}
+    {file:'CHROLOPLTH.png',label:'Land Use Choropleth (2022–2025)',sub:'Residential · Commercial · Industrial · Petrol Station · all wards'},
+    {file:'2040.jpeg',label:'2040 Growth Zone Map',sub:'Absolute TZS price classification · ≥25M / 18–25M / 12–18M / <12M'}
   ]
 };
+
 Object.entries(GALLERIES).forEach(([id,figs])=>{
   const el=document.getElementById(id);if(!el)return;
   figs.forEach(f=>{el.innerHTML+=`<div class="gal-card" onclick="openLB('${f.file}','${f.label}')"><img src="${f.file}" alt="${f.label}" loading="lazy"><div class="gl">${f.label}</div><div class="gs">${f.sub}</div></div>`;});
 });
+
 function openLB(src,cap){
   const lb=document.getElementById('lb');lb.style.display='';
   document.getElementById('lb-img').src=src;
@@ -492,8 +404,6 @@ window.addEventListener('scroll',()=>{
 document.addEventListener('mousemove',e=>{
   if(e.clientY<80){topBar.classList.remove('hidden');mainNav.classList.remove('hidden');}
 });
-
-// ── VOICE NAVIGATION ──────────────────────────────────────────────
 const voiceBtn=document.getElementById('voice-btn');
 const voiceToast=document.getElementById('voice-toast');
 const navLinks=document.querySelectorAll('nav a');
