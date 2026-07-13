@@ -33,8 +33,7 @@ nav a{color:rgba(255,255,255,.75);text-decoration:none;padding:9px 16px;font-siz
 nav a:hover,nav a.active{color:#fff;border-bottom-color:var(--orange)}
 main{max-width:1100px;margin:0 auto;padding:1.8rem;margin-top:96px}
 .section{display:none}.section.active{display:block}
-.page-title{font-size:1.1rem;font-weight:700;color:var(--navy);margin-bottom:3px}
-.page-sub{font-size:12.5px;color:#555;margin-bottom:1.3rem;line-height:1.5}
+.page-title{font-size:1.1rem;font-weight:700;color:var(--navy);margin-bottom:1rem}
 .map-pills{display:flex;flex-wrap:wrap;gap:7px;margin-bottom:.6rem}
 .pill{padding:7px 16px;border-radius:20px;font-size:12.5px;font-weight:600;cursor:pointer;border:1.5px solid rgba(255,255,255,.6);background:rgba(255,255,255,.75);color:var(--grey);transition:all .2s;backdrop-filter:blur(2px)}
 .pill:hover{border-color:var(--navy);color:var(--navy);background:rgba(255,255,255,.9)}
@@ -115,7 +114,6 @@ footer strong{color:#fff}
 @keyframes pulse{0%,100%{box-shadow:0 0 0 0 rgba(192,57,43,.5)}50%{box-shadow:0 0 0 12px rgba(192,57,43,0)}}
 #voice-toast{position:fixed;bottom:88px;right:24px;z-index:501;background:rgba(26,39,68,.95);color:#fff;font-size:12.5px;padding:8px 14px;border-radius:8px;max-width:220px;text-align:center;line-height:1.5;display:none;backdrop-filter:blur(4px);border:1px solid rgba(255,255,255,.15)}
 #voice-toast.show{display:block}
-/* Search */
 .search-input{width:100%;padding:12px 18px;border-radius:10px;border:1.5px solid rgba(26,39,68,.2);font-size:15px;outline:none;background:rgba(255,255,255,.92);transition:border .2s;margin-bottom:1rem}
 .search-input:focus{border-color:var(--orange)}
 .ward-stat-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(200px,1fr));gap:1px;background:#eee}
@@ -139,7 +137,7 @@ footer strong{color:#fff}
   <span class="hbadge">GTWR</span>
   <div style="min-width:0">
     <div class="htitle">Spatial-Temporal Analysis of Residential Land Price in Ubungo Municipal Using GTWR</div>
-    <div class="hsub">Ardhi University &nbsp;·&nbsp; Bachelor's Dissertation &nbsp;·&nbsp; 2022–2025 &nbsp;·&nbsp; 14 Wards &nbsp;·&nbsp; 488 Observations</div>
+    <div class="hsub">Ubungo Municipality · Dar es Salaam · 2026</div>
   </div>
 </div>
 <nav id="main-nav">
@@ -191,7 +189,6 @@ footer strong{color:#fff}
 <main>
 <div id="maps" class="section">
   <div class="page-title">Spatial Maps — 2022 to 2025</div>
-  <div class="page-sub">GTWR coefficient maps for all predictors across Ubungo's 14 wards. Click to enlarge.</div>
   <div class="map-pills" id="pills"></div>
   <div class="slideshow-bar" id="ss-bar">
     <button class="ss-btn" id="ss-play-btn" onclick="toggleSlideshow()">▶ Play</button>
@@ -209,34 +206,26 @@ footer strong{color:#fff}
 </div>
 <div id="trends" class="section">
   <div class="page-title">Price Trend Maps</div>
-  <div class="page-sub">Maximum, minimum and temporal residential land price trends per ward, 2022–2025.</div>
   <div class="gallery" id="trends-gal"></div>
 </div>
 <div id="gtwr" class="section">
   <div class="page-title">GTWR Model Results</div>
-  <div class="page-sub">Model performance metrics and predicted price distribution. Global R² = 0.8912, AIC = −1,166.7.</div>
   <div class="gallery" id="gtwr-gal"></div>
 </div>
 <div id="corr" class="section">
   <div class="page-title">Correlation Analysis</div>
-  <div class="page-sub">Pearson correlation matrices and predictor relationships. Night-time light strongest (r = +0.884); CBD weakest (r = −0.156).</div>
   <div class="gallery" id="corr-gal"></div>
 </div>
 <div id="traj" class="section">
   <div class="page-title">Trajectories &amp; 2040 Projection</div>
-  <div class="page-sub">Ward-level price trajectories (2022–2025) and directional rose scenario projection to 2040.</div>
   <div class="gallery" id="traj-gal"></div>
 </div>
 <div id="other" class="section">
   <div class="page-title">Other Figures</div>
-  <div class="page-sub">Land use choropleth, petal map and price comparison — Ubungo Municipality.</div>
   <div class="gallery" id="other-gal"></div>
 </div>
-
-<!-- ══ WARD SEARCH ══════════════════════════════════════════════ -->
 <div id="search" class="section">
   <div class="page-title">🔍 Ward Price Search</div>
-  <div class="page-sub">Search any ward in Ubungo Municipality — see full price history, location details and 2040 projection.</div>
   <input class="search-input" id="ward-input" type="text"
     placeholder="Type ward name e.g. Goba, Sinza, Kibamba, Manzese..."
     oninput="wardSearch(this.value)">
@@ -246,10 +235,8 @@ footer strong{color:#fff}
   </div>
   <div id="ward-result"></div>
 </div>
-
 <div id="help" class="section">
   <div class="page-title">Help &amp; Contact</div>
-  <div class="page-sub">For questions or feedback about this research dashboard, please contact the authors directly using the details below.</div>
   <div class="help-grid">
     <div class="help-card">
       <img src="innocent.jpeg" alt="Innocent Stephano" class="help-photo" onerror="this.style.background='#dde1ea'">
@@ -280,13 +267,13 @@ footer strong{color:#fff}
   </div>
   <div class="help-info">
     <strong>About This Dashboard</strong><br>
-    This research dashboard was developed as a supplementary output to the Bachelor's dissertation submitted to the Department of Geospatial Science and Technology, Ardhi University, Dar es Salaam, 2026. All spatial data processing and cartographic output was carried out in ArcMap 10.8. Statistical modelling, covariate construction, and 2040 projections were implemented in Python 3 using the pandas, numpy, scipy, statsmodels, and mgwr libraries. The dashboard is hosted on GitHub Pages at <a href="https://DEBRUYNE007445.github.io/GTWR-RESEARCH-DASHBOARD" target="_blank" style="color:var(--orange)">DEBRUYNE007445.github.io/GTWR-RESEARCH-DASHBOARD</a>.
+    Developed as a supplementary output to the Bachelor's dissertation submitted to the Department of Geospatial Science and Technology, Ardhi University, Dar es Salaam, 2026. Hosted on GitHub Pages at <a href="https://DEBRUYNE007445.github.io/GTWR-RESEARCH-DASHBOARD" target="_blank" style="color:var(--orange)">DEBRUYNE007445.github.io/GTWR-RESEARCH-DASHBOARD</a>.
     <br><br>
-    <strong>Voice Navigation</strong><br>
-    Click the 🎤 button (bottom-right) and say a section name. Commands: <em>home, spatial maps, price trends, GTWR results, correlations, trajectories, other figures, ward search, help</em>. Also say: <em>play, stop, next, previous</em> on the Spatial Maps page.
+    <strong>Voice Navigation</strong> — Click 🎤 and say: <em>home, spatial maps, price trends, GTWR results, correlations, trajectories, other figures, ward search, help, play, stop, next, previous</em> or any ward name.
     <br><br>
-    <strong>Ward Search</strong><br>
-    Use the 🔍 Ward Search tab to look up any ward — full price data from 2022 to 2040, location coordinates, area, population density, NTL, distances to road/BRT/CBD and 2040 growth zone.
+    <strong>Ward Search</strong> — Type or click any ward to see full price data 2022–2040.
+    <br><br>
+    <strong>Slideshow</strong> — On Spatial Maps, click ▶ Play or use Space / ← → keys.
   </div>
 </div>
 </main>
@@ -301,7 +288,6 @@ footer strong{color:#fff}
   Prepared by <strong>Centy de Bruyne &amp; Preciouce Luy</strong> &nbsp;·&nbsp; GIS &amp; RS III &nbsp;·&nbsp; Ardhi University &nbsp;·&nbsp; 2026
 </footer>
 <script>
-// ── INTRO ────────────────────────────────────────────────────────
 const INTRO_DURATION=6000;
 let introDismissed=false;
 function dismissIntro(){
@@ -329,7 +315,6 @@ window.addEventListener('load',()=>{
 });
 if('speechSynthesis' in window){window.speechSynthesis.onvoiceschanged=()=>{};}
 
-// ── MAPS ─────────────────────────────────────────────────────────
 const MAPS=[
   {label:'BRT Accessibility',file:'GTWR_BRT_coef_EDITED_STYLE.png',title:'GTWR BRT Accessibility Coefficient Distribution',sub:'GTWR Coefficient · 2022–2025 · Ubungo Municipality',cap:'Spatial distribution of the BRT accessibility coefficient. Pearson r = −0.623 with log(price). BRT collinearity with road distance (r = 0.98) addressed via ridge regularisation (λ = 0.05).'},
   {label:'CBD Accessibility',file:'GTWR_CBD_coef_EDITED_STYLE.png',title:'GTWR CBD Accessibility Coefficient Distribution',sub:'GTWR Coefficient · 2022–2025 · Ubungo Municipality',cap:'Weak global influence (Pearson r = −0.156) due to Ubungo\'s narrow CBD distance range. Local coefficients reveal stronger effects near the urban core.'},
@@ -386,7 +371,6 @@ function setMap(idx,btn){
 }
 setMap(0,pillBtns[0]);
 
-// ── SLIDESHOW ─────────────────────────────────────────────────────
 let ssPlaying=false,ssTimer=null,ssSpeedMs=60000;
 function updateSpeed(){ssSpeedMs=parseInt(document.getElementById('ss-speed').value)*1000;if(ssPlaying){stopSlideshow();startSlideshow();}}
 function startSlideshow(){
@@ -413,7 +397,6 @@ function toggleSlideshow(){if(ssPlaying)stopSlideshow();else startSlideshow();}
 function ssNext(){stopSlideshow();setMap((currentMapIdx+1)%MAPS.length,null);}
 function ssPrev(){stopSlideshow();setMap((currentMapIdx-1+MAPS.length)%MAPS.length,null);}
 
-// ── GALLERIES ─────────────────────────────────────────────────────
 const GALLERIES={
   'trends-gal':[
     {file:'Maximum_Land_Price_Trend_fixed.png',label:'Maximum Land Price Trend',sub:'Per ward · 2022–2025'},
@@ -447,14 +430,12 @@ Object.entries(GALLERIES).forEach(([id,figs])=>{
   figs.forEach(f=>{el.innerHTML+=`<div class="gal-card" onclick="openLB('${f.file}','${f.label}')"><img src="${f.file}" alt="${f.label}" loading="lazy"><div class="gl">${f.label}</div><div class="gs">${f.sub}</div></div>`;});
 });
 
-// ── WARD DATA ─────────────────────────────────────────────────────
 const WARD_DATA={"GOBA":{"name":"Goba","lat":-6.7669,"lon":39.2935,"area_km2":47.2,"pop_density":3200,"D_CBD_m":6152,"D_BRT_m":6642,"D_ROAD_m":6319,"NTL":13.05,"Local_R2":0.038,"CAGR_pct":23.3,"growth_zone":"Low","type":"Residential","observed":{"2022":265000,"2023":315769,"2024":390385,"2025":496154},"projected":{"2022":265000,"2023":315769,"2024":390385,"2025":496154,"2026":611514,"2027":753697,"2028":928938,"2029":1144925,"2030":1411130,"2031":1739231,"2032":2143619,"2033":2642030,"2034":3256326,"2035":4013451,"2036":4946615,"2037":6096749,"2038":7514299,"2039":9261443,"2040":11414813}},"KIBAMBA":{"name":"Kibamba","lat":-6.7605,"lon":39.2386,"area_km2":45.0,"pop_density":2155,"D_CBD_m":8323,"D_BRT_m":2275,"D_ROAD_m":1247,"NTL":5.91,"Local_R2":0.906,"CAGR_pct":26.0,"growth_zone":"Low","type":"Residential","observed":{"2022":117143,"2023":142857,"2024":178571,"2025":234286},"projected":{"2022":117143,"2023":142857,"2024":178571,"2025":234286,"2026":295182,"2027":371905,"2028":468571,"2029":590363,"2030":743811,"2031":937143,"2032":1180726,"2033":1487622,"2034":1874286,"2035":2361452,"2036":2975243,"2037":3748571,"2038":4722904,"2039":5950486,"2040":7497143}},"KIMARA":{"name":"Kimara","lat":-6.7922,"lon":39.2465,"area_km2":12.0,"pop_density":8684,"D_CBD_m":5734,"D_BRT_m":1910,"D_ROAD_m":1616,"NTL":12.42,"Local_R2":0.661,"CAGR_pct":20.8,"growth_zone":"High","type":"Residential","observed":{"2022":611364,"2023":706818,"2024":863636,"2025":1077273},"projected":{"2022":611364,"2023":706818,"2024":863636,"2025":1077273,"2026":1301171,"2027":1571604,"2028":1898243,"2029":2292770,"2030":2769294,"2031":3344859,"2032":4040048,"2033":4879723,"2034":5893915,"2035":7118894,"2036":8598471,"2037":10385560,"2038":12544074,"2039":15151209,"2040":18300206}},"KWEMBE":{"name":"Kwembe","lat":-6.7575,"lon":39.2294,"area_km2":60.4,"pop_density":1606,"D_CBD_m":10089,"D_BRT_m":3534,"D_ROAD_m":2581,"NTL":5.2,"Local_R2":0.91,"CAGR_pct":25.3,"growth_zone":"Low","type":"Residential","observed":{"2022":166000,"2023":199000,"2024":251000,"2025":326500},"projected":{"2022":166000,"2023":199000,"2024":251000,"2025":326500,"2026":409080,"2027":512546,"2028":642182,"2029":804606,"2030":1008111,"2031":1263087,"2032":1582554,"2033":1982821,"2034":2484325,"2035":3112673,"2036":3899946,"2037":4886339,"2038":6122215,"2039":7670676,"2040":9610781}},"MABIBO":{"name":"Mabibo","lat":-6.8051,"lon":39.2555,"area_km2":6.0,"pop_density":13409,"D_CBD_m":3940,"D_BRT_m":639,"D_ROAD_m":148,"NTL":21.55,"Local_R2":0.741,"CAGR_pct":19.3,"growth_zone":"Very High","type":"Residential","observed":{"2022":1057143,"2023":1250000,"2024":1485714,"2025":1792857},"projected":{"2022":1057143,"2023":1250000,"2024":1485714,"2025":1792857,"2026":2138043,"2027":2549688,"2028":3040589,"2029":3626005,"2030":4324133,"2031":5156674,"2032":6149508,"2033":7333496,"2034":8745441,"2035":10429233,"2036":12437212,"2037":14831795,"2038":17687416,"2039":21092839,"2040":25153922}},"MAKUBURI":{"name":"Makuburi","lat":-6.8038,"lon":39.2174,"area_km2":5.5,"pop_density":17636,"D_CBD_m":8094,"D_BRT_m":377,"D_ROAD_m":218,"NTL":12.68,"Local_R2":0.458,"CAGR_pct":18.8,"growth_zone":"High","type":"Residential","observed":{"2022":1000000,"2023":1161111,"2024":1361111,"2025":1677778},"projected":{"2022":1000000,"2023":1161111,"2024":1361111,"2025":1677778,"2026":1993636,"2027":2368958,"2028":2814938,"2029":3344879,"2030":3974585,"2031":4722841,"2032":5611963,"2033":6668471,"2034":7923877,"2035":9415627,"2036":11188213,"2037":13294506,"2038":15797329,"2039":18771334,"2040":22305226}},"MAKURUMLA":{"name":"Makurumla","lat":-6.8067,"lon":39.2466,"area_km2":2.5,"pop_density":38798,"D_CBD_m":4845,"D_BRT_m":365,"D_ROAD_m":259,"NTL":18.95,"Local_R2":0.718,"CAGR_pct":18.6,"growth_zone":"Very High","type":"Residential","observed":{"2022":1187500,"2023":1381250,"2024":1631250,"2025":1981250},"projected":{"2022":1187500,"2023":1381250,"2024":1631250,"2025":1981250,"2026":2349856,"2027":2787039,"2028":3305559,"2029":3920548,"2030":4649955,"2031":5515065,"2032":6541126,"2033":7758082,"2034":9201450,"2035":10913352,"2036":12943748,"2037":15351893,"2038":18208066,"2039":21595621,"2040":25613421}},"MANZESE":{"name":"Manzese","lat":-6.7983,"lon":39.2427,"area_km2":2.5,"pop_density":38798,"D_CBD_m":5551,"D_BRT_m":713,"D_ROAD_m":520,"NTL":21.2,"Local_R2":0.731,"CAGR_pct":18.3,"growth_zone":"Very High","type":"Residential","observed":{"2022":1294444,"2023":1505556,"2024":1772222,"2025":2144444},"projected":{"2022":1294444,"2023":1505556,"2024":1772222,"2025":2144444,"2026":2537417,"2027":3002403,"2028":3552599,"2029":4203619,"2030":4973939,"2031":5885421,"2032":6963935,"2033":8240087,"2034":9750097,"2035":11536819,"2036":13650960,"2037":16152522,"2038":19112498,"2039":22614896,"2040":26759113}},"MBEZI":{"name":"Mbezi","lat":-6.7869,"lon":39.2858,"area_km2":28.0,"pop_density":5518,"D_CBD_m":3269,"D_BRT_m":4426,"D_ROAD_m":3859,"NTL":7.54,"Local_R2":0.72,"CAGR_pct":22.2,"growth_zone":"Moderate","type":"Residential","observed":{"2022":429167,"2023":500000,"2024":625000,"2025":783333},"projected":{"2022":429167,"2023":500000,"2024":625000,"2025":783333,"2026":957312,"2027":1169931,"2028":1429773,"2029":1747327,"2030":2135409,"2031":2609684,"2032":3189295,"2033":3897639,"2034":4763306,"2035":5821238,"2036":7114137,"2037":8694190,"2038":10625172,"2039":12985027,"2040":15869006}},"MBURAHATI":{"name":"Mburahati","lat":-6.8006,"lon":39.248,"area_km2":2.8,"pop_density":34641,"D_CBD_m":4884,"D_BRT_m":376,"D_ROAD_m":332,"NTL":17.91,"Local_R2":0.74,"CAGR_pct":17.2,"growth_zone":"Very High","type":"Residential","observed":{"2022":1500000,"2023":1727778,"2024":2038889,"2025":2416667},"projected":{"2022":1500000,"2023":1727778,"2024":2038889,"2025":2416667,"2026":2833078,"2027":3321241,"2028":3893519,"2029":4564404,"2030":5350889,"2031":6272891,"2032":7353762,"2033":8620876,"2034":10106324,"2035":11847728,"2036":13889189,"2037":16282411,"2038":19088006,"2039":22377027,"2040":26232774}},"MSIGANI":{"name":"Msigani","lat":-6.7694,"lon":39.2349,"area_km2":18.0,"pop_density":4953,"D_CBD_m":7942,"D_BRT_m":1168,"D_ROAD_m":374,"NTL":12.48,"Local_R2":0.871,"CAGR_pct":23.6,"growth_zone":"Moderate","type":"Residential","observed":{"2022":353571,"2023":417857,"2024":525000,"2025":667857},"projected":{"2022":353571,"2023":417857,"2024":525000,"2025":667857,"2026":825567,"2027":1020519,"2028":1261508,"2029":1559405,"2030":1927647,"2031":2382848,"2032":2945542,"2033":3641112,"2034":4500936,"2035":5563801,"2036":6877656,"2037":8501767,"2038":10509403,"2039":12991127,"2040":16058894}},"SARANGA":{"name":"Saranga","lat":-6.7926,"lon":39.2714,"area_km2":30.0,"pop_density":5202,"D_CBD_m":3268,"D_BRT_m":2766,"D_ROAD_m":2289,"NTL":12.04,"Local_R2":0.738,"CAGR_pct":24.6,"growth_zone":"Low","type":"Residential","observed":{"2022":195714,"2023":238571,"2024":294286,"2025":378571},"projected":{"2022":195714,"2023":238571,"2024":294286,"2025":378571,"2026":471690,"2027":587712,"2028":732273,"2029":912392,"2030":1136816,"2031":1416441,"2032":1764846,"2033":2198950,"2034":2739831,"2035":3413754,"2036":4253443,"2037":5299673,"2038":6603246,"2039":8227463,"2040":10251192}},"SINZA":{"name":"Sinza","lat":-6.7832,"lon":39.2401,"area_km2":3.3,"pop_density":10221,"D_CBD_m":6550,"D_BRT_m":1388,"D_ROAD_m":1158,"NTL":28.89,"Local_R2":0.816,"CAGR_pct":18.6,"growth_zone":"Very High","type":"Residential","observed":{"2022":1937500,"2023":2262500,"2024":2687500,"2025":3231250},"projected":{"2022":1937500,"2023":2262500,"2024":2687500,"2025":3231250,"2026":3831894,"2027":4544190,"2028":5388891,"2029":6390611,"2030":7578536,"2031":8987280,"2032":10657889,"2033":12639042,"2034":14988463,"2035":17774609,"2036":21078660,"2037":24996889,"2038":29643461,"2039":35153766,"2040":41688360}},"UBUNGO":{"name":"Ubungo","lat":-6.7893,"lon":39.2328,"area_km2":3.3,"pop_density":14435,"D_CBD_m":6946,"D_BRT_m":1102,"D_ROAD_m":1030,"NTL":18.06,"Local_R2":0.753,"CAGR_pct":18.8,"growth_zone":"Very High","type":"Residential","observed":{"2022":1722727,"2023":1990909,"2024":2381818,"2025":2890909},"projected":{"2022":1722727,"2023":1990909,"2024":2381818,"2025":2890909,"2026":3435372,"2027":4082376,"2028":4851235,"2029":5764898,"2030":6850637,"2031":8140859,"2032":9674077,"2033":11496055,"2034":13661178,"2035":16234071,"2036":19291534,"2037":22924827,"2038":27242400,"2039":32373128,"2040":38470157}}};
 
 const ZONE_COLOR={'Very High':'#8B0000','High':'#d42020','Moderate':'#e87070','Low':'#f5b8b8'};
 function fmt(n){return Number(n).toLocaleString('en-US');}
 function fmtM(n){return (n/1e6).toFixed(2)+'M';}
 
-// Quick buttons
 const qb=document.getElementById('quick-btns');
 Object.keys(WARD_DATA).sort().forEach(k=>{
   const btn=document.createElement('button');
@@ -476,7 +457,6 @@ function showWard(key){
   const zc=ZONE_COLOR[d.growth_zone]||'#888';
   const growthObs=(((d.observed['2025']-d.observed['2022'])/d.observed['2022'])*100).toFixed(1);
   const growthTotal=(((d.projected['2040']-d.observed['2022'])/d.observed['2022'])*100).toFixed(0);
-
   let priceRows='';
   for(let yr=2022;yr<=2040;yr++){
     const p=d.projected[String(yr)];
@@ -487,10 +467,9 @@ function showWard(key){
       <td style="padding:6px 12px;font-weight:700;color:${isObs?'var(--navy)':'#888'}">${yr}${isObs?' ✓':''}</td>
       <td style="padding:6px 12px;text-align:right;font-weight:500">${fmt(p)}</td>
       <td style="padding:6px 12px;text-align:right;color:#555">${fmtM(p)}</td>
-      <td style="padding:6px 12px;text-align:right;color:${chg>0?'#2a7a2a':'#888'}">${chg!=='-'?'+'+chg+'%':'-'}</td>
+      <td style="padding:6px 12px;text-align:right;color:#2a7a2a">${chg!=='-'?'+'+chg+'%':'-'}</td>
     </tr>`;
   }
-
   const stats=[
     ['📍 Coordinates',`Lat ${d.lat} · Lon ${d.lon}`],
     ['🏘 Land Use Type',d.type],
@@ -499,7 +478,7 @@ function showWard(key){
     ['💡 Night-time Light (NTL)',`${d.NTL} radiance units`],
     ['🛣 Distance to Road',`${fmt(d.D_ROAD_m)} m`],
     ['🚌 Distance to BRT Terminal',`${fmt(d.D_BRT_m)} m`],
-    ['🏙 Distance to CBD (Kariakoo)',`${fmt(d.D_CBD_m)} m`],
+    ['🏙 Distance to CBD',`${fmt(d.D_CBD_m)} m`],
     ['📈 GTWR Local R²',d.Local_R2],
     ['📊 Observed CAGR (2022–2025)',`${d.CAGR_pct}% per year`],
     ['📉 Price Growth 2022–2025',`+${growthObs}%`],
@@ -508,7 +487,6 @@ function showWard(key){
     ['🔮 2040 Projected Price',`${fmtM(d.projected['2040'])} TZS`],
     ['📈 Total Growth 2022–2040',`+${growthTotal}%`],
   ];
-
   document.getElementById('ward-result').innerHTML=`
   <div style="background:rgba(255,255,255,.92);border-radius:14px;overflow:hidden;border:1px solid rgba(255,255,255,.6);backdrop-filter:blur(4px);margin-bottom:1.5rem">
     <div style="background:rgba(26,39,68,.92);color:#fff;padding:1.2rem 1.5rem;display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:.5rem">
@@ -518,9 +496,7 @@ function showWard(key){
       </div>
       <div style="background:${zc};color:#fff;padding:7px 20px;border-radius:20px;font-size:12px;font-weight:700;letter-spacing:.06em">${d.growth_zone.toUpperCase()} GROWTH ZONE</div>
     </div>
-    <div class="ward-stat-grid">
-      ${stats.map(([l,v])=>`<div class="ward-stat"><div class="ward-stat-label">${l}</div><div class="ward-stat-val">${v}</div></div>`).join('')}
-    </div>
+    <div class="ward-stat-grid">${stats.map(([l,v])=>`<div class="ward-stat"><div class="ward-stat-label">${l}</div><div class="ward-stat-val">${v}</div></div>`).join('')}</div>
     <div style="padding:1.2rem 1.5rem">
       <div style="font-size:13px;font-weight:700;color:var(--navy);margin-bottom:.8rem">
         📅 Full Price History &amp; Projection (2022–2040)
@@ -528,14 +504,12 @@ function showWard(key){
       </div>
       <div style="overflow-x:auto">
         <table style="width:100%;border-collapse:collapse;font-size:13px">
-          <thead>
-            <tr style="background:rgba(26,39,68,.08)">
-              <th style="padding:8px 12px;text-align:left;font-weight:700;color:var(--navy)">Year</th>
-              <th style="padding:8px 12px;text-align:right;font-weight:700;color:var(--navy)">Price (TZS)</th>
-              <th style="padding:8px 12px;text-align:right;font-weight:700;color:var(--navy)">Price (M TZS)</th>
-              <th style="padding:8px 12px;text-align:right;font-weight:700;color:var(--navy)">YoY Change</th>
-            </tr>
-          </thead>
+          <thead><tr style="background:rgba(26,39,68,.08)">
+            <th style="padding:8px 12px;text-align:left;font-weight:700;color:var(--navy)">Year</th>
+            <th style="padding:8px 12px;text-align:right;font-weight:700;color:var(--navy)">Price (TZS)</th>
+            <th style="padding:8px 12px;text-align:right;font-weight:700;color:var(--navy)">Price (M TZS)</th>
+            <th style="padding:8px 12px;text-align:right;font-weight:700;color:var(--navy)">YoY Change</th>
+          </tr></thead>
           <tbody>${priceRows}</tbody>
         </table>
       </div>
@@ -544,7 +518,6 @@ function showWard(key){
   document.getElementById('ward-result').scrollIntoView({behavior:'smooth',block:'start'});
 }
 
-// ── LIGHTBOX ──────────────────────────────────────────────────────
 function openLB(src,cap){
   const lb=document.getElementById('lb');lb.style.display='';
   document.getElementById('lb-img').src=src;
@@ -563,7 +536,6 @@ document.addEventListener('keydown',e=>{
   if(e.key===' '&&document.getElementById('maps').classList.contains('active')){e.preventDefault();toggleSlideshow();}
 });
 
-// ── NAVIGATION ────────────────────────────────────────────────────
 function show(id,el){
   if(id!=='maps')stopSlideshow();
   const hero=document.getElementById('hero');
@@ -593,7 +565,6 @@ document.addEventListener('mousemove',e=>{
   if(e.clientY<80){topBar.classList.remove('hidden');mainNav.classList.remove('hidden');}
 });
 
-// ── VOICE ─────────────────────────────────────────────────────────
 const voiceBtn=document.getElementById('voice-btn');
 const voiceToast=document.getElementById('voice-toast');
 const navLinks=document.querySelectorAll('nav a');
@@ -631,13 +602,12 @@ function handleVoiceCommand(transcript){
       return true;
     }
   }
-  // Try ward search by voice
   const wardKey=Object.keys(WARD_DATA).find(k=>t.includes(k.toLowerCase())||t.includes(WARD_DATA[k].name.toLowerCase()));
   if(wardKey){
     show('search',navLinks[7]);
     document.getElementById('ward-input').value=WARD_DATA[wardKey].name;
     showWard(wardKey);
-    showToast('🔍 Showing: '+WARD_DATA[wardKey].name);
+    showToast('🔍 '+WARD_DATA[wardKey].name);
     return true;
   }
   showToast('❓ Not recognised: "'+transcript+'"',3000);
